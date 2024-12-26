@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/create2.css">
+</head>
+<body>
+    <div class="container">
+      <table>
+        <tr>
+          <td>
+            게시글 등록 완료됨. <br>
+            <h3 th:text="${boardVO.no}"></h3>
+            <h3 th:text="${boardVO.title}"></h3>
+            <h3 th:text="${boardVO.content}"></h3>
+            <h3 th:text="${boardVO.writer}"></h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a href="board">
+              <button>게시글 정보 페이지로</button>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+</body>
+</html>

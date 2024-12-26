@@ -25,6 +25,6 @@ public class HomeController {
     @GetMapping("board")
     public String board() {
         System.out.println("board get 요청 들어옴.");
-        return "/post/board";
+        return "/board/board";
     }
 }
