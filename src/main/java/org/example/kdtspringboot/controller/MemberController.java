@@ -14,25 +14,25 @@ public class MemberController {
     @GetMapping("create")
     public String create() {
         System.out.println("create GET 요청");
-        return "create";
+        return "/member/create";
     }
 
     @GetMapping("delete")
     public String delete() {
         System.out.println("delete GET 요청");
-        return "delete";
+        return "/member/delete";
     }
 
     @GetMapping("update")
     public String update() {
         System.out.println("update GET 요청");
-        return "update";
+        return "/member/update";
     }
 
     // post 요청 1개
     @PostMapping("read")
     public String read(int id) {
         System.out.println("read POST 요청");
-        return "read";
+        return "/member/read";
     }
 }

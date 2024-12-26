@@ -20,12 +20,12 @@ public class HomeController {
     @GetMapping("member")
     public String member() {
         System.out.println("member get 요청 들어옴.");
-        return "member";    // html 파일 반환!! member.html 파일을 호출해서 응답
+        return "/member/member";    // html 파일 반환!! member.html 파일을 호출해서 응답
     }
 
     @GetMapping("board")
     public String board() {
         System.out.println("board get 요청 들어옴.");
-        return "board";
+        return "/post/board";
     }
 }
