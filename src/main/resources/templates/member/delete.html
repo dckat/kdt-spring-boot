@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/create2.css">
 </head>
 <body>
-    delete 페이지 입니다. 환영합니다.
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                회원 탈퇴 후 화면 <br>
+                <h3>탈퇴한 ID: <span th:text="${id}"></span></h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="member">
+                    <button>회원정보 페이지로</button>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

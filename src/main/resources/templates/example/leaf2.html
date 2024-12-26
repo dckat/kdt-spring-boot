@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${title}">타임리프 예제</title>
+        <!--
+        ${출력할 속성이름} - 출력 (expression language - EL)
+        -->
+    </head>
+    <body>
+        <h1 th:text="${title}"></h1>
+        <!-- list 반복문으로 출력 -->
+        <h2>과일 목록</h2>
+        <ul>
+            <li th:each="item : ${list}" th:text="${item}"></li>
+        </ul>
+
+        <!-- 나이와 사용자 ID 출력 -->
+        <!-- span 태그: text만 있어서 문법에서 tag가 필요한 경우 사용 -->
+        <p>총 과일 갯수: <span th:text="${total}"></span></p>
+
+        <p th:if="${userId} == 'admin'">관리자 로그인 상태입니다.</span></p>
+        <p th:unless="${userId} == 'admin'">관리자 로그인 상태가 아닙니다.</p>
+    </body>
+</html>
