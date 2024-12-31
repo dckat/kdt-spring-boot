@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.kdtspringboot.member.dao.MemberMapper">
+<!--    MemberMapper.java와 연결이 됨.-->
+
+
+    <insert id="insertMember"
+            parameterType="memberVO">
+        INSERT INTO member (id, pw, name, tel)
+        VALUES (#{id}, #{pw}, #{name}, #{tel})
+    </insert>
+    <update id="updateMember">
+        UPDATE member
+        SET pw = #{pw}, name = #{name}, tel = #{tel}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteMember"
+            parameterType="string">
+        DELETE FROM member
+        WHERE id = #{id}
+    </delete>
+    <select id="selectMemberById"
+            resultType="memberVO">
+        SELECT * from member
+        where id = #{id}
+    </select>
+    <select id="selectMemberAll"
+            resultType="memberVO">
+        SELECT * from member
+    </select>
+</mapper>
