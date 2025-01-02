@@ -24,7 +24,11 @@
                 <tbody>
                   <tr class="text-center" th:each="boardVO : ${list}">
                     <td>[[${boardVO.no}]]</td>
-                    <td>[[${boardVO.title}]]</td>
+                    <td>
+                      <a th:href="@{/board/read(no=${boardVO.no})}" style="text-decoration: none;">
+                        [[${boardVO.title}]]
+                      </a>
+                    </td>
                     <td>[[${boardVO.writer}]]</td>
                   </tr>
                 </tbody>
