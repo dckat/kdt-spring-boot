@@ -30,7 +30,7 @@
     <update id="updateBoard"
             parameterType="boardVO">
         UPDATE board
-        SET title = #{title}, content = #{content}, writer = #{writer}
+        SET title = #{title}, content = #{content}
         WHERE no = #{no}
     </update>
 
