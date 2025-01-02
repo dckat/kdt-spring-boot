@@ -1,6 +1,6 @@
-package org.example.kdtspringboot.member.dao;
+package com.example.kdtspringboot.member.dao;
 
-import org.example.kdtspringboot.member.vo.MemberVO;
+import com.example.kdtspringboot.member.vo.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

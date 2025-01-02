@@ -1,4 +1,4 @@
-package org.example.kdtspringboot;
+package com.example.kdtspringboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package org.example.kdtspringboot;
+package com.example.kdtspringboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

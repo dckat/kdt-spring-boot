@@ -1,7 +1,7 @@
-package org.example.kdtspringboot.member.service;
+package com.example.kdtspringboot.member.service;
 
-import org.example.kdtspringboot.member.dao.MemberMapper;
-import org.example.kdtspringboot.member.vo.MemberVO;
+import com.example.kdtspringboot.member.dao.MemberMapper;
+import com.example.kdtspringboot.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

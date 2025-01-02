@@ -1,4 +1,4 @@
-package org.example.kdtspringboot.config;
+package com.example.kdtspringboot.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

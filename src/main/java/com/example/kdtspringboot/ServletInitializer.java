@@ -1,4 +1,4 @@
-package org.example.kdtspringboot;
+package com.example.kdtspringboot;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

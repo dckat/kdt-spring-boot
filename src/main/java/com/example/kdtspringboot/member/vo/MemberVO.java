@@ -1,4 +1,4 @@
-package org.example.kdtspringboot.member.vo;
+package com.example.kdtspringboot.member.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

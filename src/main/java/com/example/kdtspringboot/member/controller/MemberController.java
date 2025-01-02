@@ -1,12 +1,10 @@
-package org.example.kdtspringboot.member.controller;
+package com.example.kdtspringboot.member.controller;
 
-import org.example.kdtspringboot.member.service.MemberService;
-import org.example.kdtspringboot.member.vo.MemberVO;
+import com.example.kdtspringboot.member.service.MemberService;
+import com.example.kdtspringboot.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
