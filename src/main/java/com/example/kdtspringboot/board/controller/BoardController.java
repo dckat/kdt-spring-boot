@@ -38,9 +38,42 @@ public class BoardController {
         return "board/create";      // 글쓰기 화면 요청
     }
 
+    @GetMapping("read")
+    public String read(int no, Model model) {
+        BoardVO boardVO = boardService.selectBoardByNo(no);
+        model.addAttribute("boardVO", boardVO);
+        return "board/read";
+    }
+
+    @GetMapping("update")
+    public String update(int no, Model model) {
+        BoardVO boardVO = boardService.selectBoardByNo(no);
+        System.out.println(boardVO);
+        model.addAttribute("boardVO", boardVO);
+        return "board/update";
+    }
+
+    @GetMapping("delete")
+    public String delete(int no, Model model) {
+        boardService.deleteBoard(no);
+        return "redirect:/board/board";
+    }
+
     @PostMapping("create2")
     public String create2(BoardVO boardVO) {
         boardService.insertBoard(boardVO);
         return "redirect:/board/board";
+    }
+
+    @PostMapping("update2")
+    public String update2(BoardVO boardVO) {
+        System.out.println("boardVO >>>>>>>>>>>>>>> " + boardVO);
+        int result = boardService.updateBoard(boardVO);
+        if (result > 0) {
+            return "board/update2";
+        }
+        else {
+            return "error/error";
+        }
     }
 }
