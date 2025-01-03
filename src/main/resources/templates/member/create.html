@@ -10,15 +10,24 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">회원가입</h2>
-                        <form action="/member/create2" method="post">
+                        <form id = "signupForm" action="/member/create2" method="post">
                             <div class="mb-3">
                                 <label for="id" class="form-label">아이디</label>
                                 <input type="text" id="id" name="id" class="form-control" placeholder="아이디 입력" required>
+                                <!--                                <button type="button" class="btn btn-outline-primary" id="checkIdBtn" onclick="checkId()">아이디 중복 체크</button>-->
+                                <button type="button" class="btn btn-outline-primary" id="checkBtn">아이디 중복 체크</button>
+                                <span id="idCheckResult" style="color: red;"></span>
                             </div>
 
                             <div class="mb-3">
                                 <label for="pw" class="form-label">비밀번호</label>
                                 <input type="password" id="pw" name="pw" class="form-control" placeholder="비밀번호 입력" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pw" class="form-label">비밀번호 확인
+                                    <span id="pw_result" style="color: red;"></span></label>
+                                <input type="password" id="pw2" name="pw2" class="form-control" placeholder="비밀번호 확인 입력" required>
                             </div>
 
                             <div class="mb-3">
@@ -32,7 +41,7 @@
                             </div>
 
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">가입하기</button>
+                                <button id="submitBtn" type="button" class="btn btn-primary">가입하기</button>
                             </div>
                         </form>
                     </div>
@@ -41,8 +50,101 @@
         </div>
     </div>
 </div>
+<th:block layout:fragment="script">
+    <!-- 자바 스크립트 추가 코드 -->
+    <script>
+        // 아이디 중복체크 여부 확인
+        let idCheckpass = false;
+        // id가 clickBtn을 가지고 와서 click했을 때 아래 함수를 실행
+        // function checkId() {
+        //     alert("내가 만든 함수 호출.");
+        // }
+        // addEventListener(이벤트 이름, 실행 할 함수)
+        document.getElementById("checkBtn").addEventListener("click", function(){
+            //alert("내가 만든 익명 함수 호출함. --> 화살표함수로 바꿔서 사용해보자.");
+            const id = document.getElementById("id").value.trim(); //공백제거
+            //alert("id: " + id);
+            if(!id){
+                alert("아이디 입력을 해주세요.");
+                return; //함수 호출시 더이상 진행하고 싶지 않을 때
+                        //return하면 종료!
+            }
+
+            //id를 서버로 보내면서 중복체크해달라고 요청하고
+            //화면이 넘어가지않고, 원할때 순서랑 상관없이 서버로 통신기술필요
+            //비동기통신(자바스크립트 기술: ajax, 에이작스)
+            //===> XMLHttpRequest객체, fetch(), axios객체(최신)
+            //브라우저에 없어서 layout.html에 cdn으로 연결
+            //ajax의 결과는 일반적으로 데이터만 받아온다.
+            // (int, boolean, string, float, list, map.....)
+            // axios.get(요청 주소).then(응답받고 나서 처리할 내용);
+            axios
+                .get("/member/checkId?id=" + id)
+                .then(function(response){
+                    //axios.get(주소) : http프로토콜을 만들어서 http요청을 함.
+                    //응답이 오면 then이 실행됨.
+                    //익명함수안에 변수이름하나 넣어두면 거기에 응답객체를 넣어줌.
+                    //alert(response.data); //http의 body를 꺼내줌.
+                    //alert(response.status); //http의 응답코드를 꺼내줌.
+                    const result = response.data; //http body 추출
+                    const idCheckResult = document.getElementById("idCheckResult");
+                    if(result){ //true
+                        //span태그 사이에 넣어야함.
+                        idCheckpass = true;
+                        idCheckResult.style.color = "green";
+                        idCheckResult.textContent = "사용할 수 있는 아이디";
+                    }else{
+                        idCheckResult.style.color = "red";
+                        idCheckResult.textContent = "사용할 수 없는 아이디";
+                    }
+                })
+                .catch(function(error){
+                    alert("아이디 중복 체크 중 오류가 발생함.");
+                    console.error(error);
+                });
+            //서버로부터 중복체크 결과를 받아서 이후에 출력
+            // (사용가능한아이디, 불가능한 아이디인지 출력)
+        });
+
+        document.getElementById("submitBtn").addEventListener("click", function () {
+            const id = document.getElementById("id").value.trim();
+            const pw = document.getElementById("pw").value.trim();
+            const pw2 = document.getElementById("pw2").value.trim();
+            const name = document.getElementById("name").value.trim();
+            const tel = document.getElementById("tel").value.trim();
+
+            console.log(id + " " + pw + " " + name + " " + tel);
+
+            // 전화번호가 000-0000-0000 패턴 설정 (제외)
+            // id가 5글자 이상인지 체크
+            if (id.length < 5) {
+                alert("아이디는 5글자 이상 되어야 함.");
+                return;
+            }
+
+            if (pw !== pw2) {
+                alert("패스워드 불일치!");
+                return;
+            }
+            // 전체 입력은 다 했는지 체크
+            if (!id || !pw || !name || !tel) {
+                alert("모든 입력값을 입력해주세요!!");
+                return;
+            }
+
+            // 아이디 중복체크 확인 여부
+            if (!idCheckpass) {
+                alert("아이디 중복 체크해주세요!!");
+                return;
+            }
+
+            // 이 함수가 중단되지 않았으면 form 전송
+            // 자바스크립트로 유효성 검증후 submit 위해서는
+            // form 내의 button 타입을 button
+            document.getElementById("signupForm").submit();
+        });
+    </script>
+</th:block>
 
 </body>
 </html>
-
-
